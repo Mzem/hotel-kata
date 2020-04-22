@@ -1,0 +1,30 @@
+{
+  "name": "hotel-kate",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "NODE_ENV=test geste",
+    "test-visual": "NODE_ENV=test geste --watch",
+    "start": "node src/index.js"
+  },
+  "author": "OCTO",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "geste": "^1.0.3",
+    "jest": "^25.1.0",
+    "lint-staged": "^9.2.5",
+    "prettier-standard": "^14.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*": [
+      "prettier-standard",
+      "git add"
+    ]
+  }
+}
