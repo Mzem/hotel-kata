@@ -1,9 +1,13 @@
-const roomsController = require('./controllers/roomsController')
+module.exports = function() {
+  const roomsController = require('./controllers/roomsController')
 
-console.log('Bienvenue !')
+  console.log('Bienvenue !')
 
-const res = roomsController.findAvailableRooms(null, null, null)
+  const res = roomsController.findAvailableRooms(null, null, 1)
 
-console.log(res)
+  console.log(res)
+  console.log('Bye !')
 
-console.log('Bye !')
+  return res
+
+}
