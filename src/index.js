@@ -1,13 +1,7 @@
-module.exports = function() {
+module.exports = function () {
   const roomsController = require('./controllers/roomsController')
 
-  console.log('Bienvenue !')
-
-  const res = roomsController.findAvailableRooms(null, null, 1)
-
-  console.log(res)
-  console.log('Bye !')
+  const res = roomsController.findAvailableRooms('2020/05/20', '2020.05.30', 1)
 
   return res
-
 }
