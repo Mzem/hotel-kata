@@ -2,8 +2,8 @@ const roomsController = require('./controllers/roomsController')
 const bookingController = require('./controllers/bookingController')
 
 module.exports = {
-  searchRooms(checkinDate, checkoutDate, guestCount) {
-    return roomsController.findAvailableRooms(
+  async searchRooms(checkinDate, checkoutDate, guestCount) {
+    return await roomsController.findAvailableRooms(
       checkinDate,
       checkoutDate,
       guestCount

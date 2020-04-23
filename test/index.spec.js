@@ -3,14 +3,14 @@ const { searchRooms, bookRooms } = require('../src/index')
 describe('searchRooms', () => {
   it('SHOULD return stay one night message', async () => {
     const expectedResult = 'you should stay at least one night'
-    const result = searchRooms('2020/05/20', '2020.05.20', 1)
+    const result = await searchRooms('2020/05/20', '2020.05.20', 1)
     expect(result).toEqual(expectedResult)
   })
   it('SHOULD return available rooms', async () => {
     const expectedResult = [
       { number: '100', floor: '1', capacity: 1, availableAt: '2020-01-01' },
     ]
-    const result = searchRooms('2020/05/20', '2020.05.30', 1)
+    const result = await searchRooms('2020/05/20', '2020.05.30', 1)
     expect(result).toEqual(expectedResult)
   })
 })

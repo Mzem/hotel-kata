@@ -1,23 +1,11 @@
-const ROOMS = [
-  { number: '100', floor: '1', capacity: 1, availableAt: '2020-01-01' },
-  { number: '200', floor: '2', capacity: 2, availableAt: '2020-05-25' },
-]
+const fs = require('fs')
+const path = require('path')
+const filename = path.join(__dirname, '../rooms.json')
 
 module.exports = class {
-  getRooms() {
-    return ROOMS
-  }
-  getRoom(roomNumber) {
-    return ROOMS.find((room) => room.number === roomNumber)
-  }
-  book(roomNumber, checkOutDate) {
-    let updatedRoom
-    ROOMS.forEach((room, index) => {
-      if (room.number === roomNumber) {
-        ROOMS[index].availableAt = checkOutDate
-        updatedRoom = ROOMS[index]
-      }
-    })
-    return updatedRoom
+  async getRooms() {
+    const content = fs.readFileSync(filename)
+
+    return JSON.parse(String(content)).rooms
   }
 }

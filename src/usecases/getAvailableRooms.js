@@ -2,7 +2,12 @@ const { format, parseISO, differenceInDays } = require('date-fns')
 
 const isAvailableRoomAtCheckinDate = require('../services/isAvailableRoomAtCheckinDate')
 
-module.exports = (checkinDate, checkoutDate, guestsCount, roomsRepository) => {
+module.exports = async (
+  checkinDate,
+  checkoutDate,
+  guestsCount,
+  roomsRepository
+) => {
   const formattedCheckinDate = parseISO(
     format(new Date(checkinDate), 'yyyy-MM-dd')
   )
@@ -19,7 +24,7 @@ module.exports = (checkinDate, checkoutDate, guestsCount, roomsRepository) => {
     return 'you should stay at least one night'
   }
 
-  const rooms = roomsRepository.getRooms()
+  const rooms = await roomsRepository.getRooms()
 
   const availableAndMatchingGuestCount = rooms.filter((room) =>
     isAvailableRoomAtCheckinDate(room, formattedCheckinDate, guestsCount)
