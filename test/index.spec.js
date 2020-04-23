@@ -16,20 +16,20 @@ describe('searchRooms', () => {
 })
 
 describe('bookRooms', () => {
-  it('SHOULD return booking room not available message', async () => {
+  it('should return booking room not available message', async () => {
     const expectedResult = 'Cannot be booked: room 200 unavailable'
     const result = bookRooms('2020/05/20', '2020.05.30', 1, '200')
     expect(result).toEqual(expectedResult)
   })
-  it('SHOULD return booked room', async () => {
+  it('should return booked room', async () => {
     const expectedResult = {
       number: '100',
       floor: '1',
       capacity: 1,
-      availableAt: '2020-01-01',
+      availableAt: '2020-05-30',
     }
 
-    const result = bookRooms('2020/05/20', '2020.05.30', 1, '100')
+    const result = bookRooms('2020-05-20', '2020-05-30', 1, '100')
     expect(result).toEqual(expectedResult)
   })
 })

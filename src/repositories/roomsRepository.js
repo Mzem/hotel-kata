@@ -10,4 +10,14 @@ module.exports = class {
   getRoom(roomNumber) {
     return ROOMS.find((room) => room.number === roomNumber)
   }
+  book(roomNumber, checkOutDate){
+    let updatedRoom;
+    ROOMS.forEach( (room, index) =>{
+      if (room.number === roomNumber) {
+        ROOMS[index].availableAt = checkOutDate
+        updatedRoom = ROOMS[index]
+      }
+    })
+    return updatedRoom
+  }
 }

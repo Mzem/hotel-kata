@@ -30,7 +30,7 @@ module.exports = (
   if (isAvailableRoomAtCheckinDate(room, formattedCheckinDate, guestsCount)) {
     // TODO use booking repo to save booking
     // TODO use room repo to update room availableAt date with checkoutDate
-    return room
+    return roomsRepository.book(roomNumber, checkoutDate)
   }
   return `Cannot be booked: room ${roomNumber} unavailable`
 }
