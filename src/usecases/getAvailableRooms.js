@@ -1,21 +1,19 @@
-const { format, compareAsc } = require('date-fns')
+const { format, compareAsc, parseISO } = require('date-fns')
 
 module.exports = (checkinDate, checkoutDate, guestsCount, roomsRepository) => {
-  const formattedCheckinDate = format(new Date(checkinDate), 'YYYY-MM-DD')
-  const formattedCheckoutDate = format(new Date(checkoutDate), 'YYYY-MM-DD')
-
-  if (
-    formattedCheckinDate == 'Invalid Date' ||
-    formattedCheckoutDate == 'Invalid Date'
-  ) {
-    return null
-  }
+  const formattedCheckinDate = parseISO(
+    format(new Date(checkinDate), 'yyyy-MM-dd')
+  )
+  const formattedCheckoutDate = parseISO(
+    format(new Date(checkoutDate), 'yyyy-MM-dd')
+  )
 
   const rooms = roomsRepository.getRooms()
 
   const availableAndMatchingGuestCount = rooms.filter((room) => {
     if (room.capacity >= guestsCount && room.capacity !== undefined) {
-      if (compareAsc(room.availableAt, checkinDate) === -1) {
+      const formattedAvailableAt = parseISO(room.availableAt)
+      if (compareAsc(formattedAvailableAt, formattedCheckinDate) === -1) {
         return true
       }
     }
