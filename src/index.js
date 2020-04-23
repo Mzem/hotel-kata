@@ -1,7 +1,20 @@
-module.exports = function () {
-  const roomsController = require('./controllers/roomsController')
+const roomsController = require('./controllers/roomsController')
+const bookingController = require('./controllers/bookingController')
 
-  const res = roomsController.findAvailableRooms('2020/05/20', '2020.05.20', 1)
-
-  return res
+module.exports = {
+  searchRooms(checkinDate, checkoutDate, guestCount) {
+    return roomsController.findAvailableRooms(
+      checkinDate,
+      checkoutDate,
+      guestCount
+    )
+  },
+  bookRooms(checkinDate, checkoutDate, guestCount, roomNumber) {
+    return bookingController.createBooking(
+      checkinDate,
+      checkoutDate,
+      guestCount,
+      roomNumber
+    )
+  },
 }
